@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - web_jpa_hibernate@localhost" uuid="7d6761f1-fd18-4be8-8242-8d67628c7b81">
+    <database-info product="MySQL" version="5.6.27-0ubuntu1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="web_jpa_hibernate"/>
+      <table id="2" parent="1" name="user_table"/>
+      <column id="3" parent="2" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="4" parent="2" name="age">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="5" parent="2" name="first_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="6" parent="2" name="last_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="7" parent="2" name="PRIMARY">
+        <columns>user_id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+  <data-source name="hibernate.cfg.xml/Hibernate" uuid="b597037c-faa9-4d2b-bba0-8d2629682ef5">
+    <database-info product="MySQL" version="5.6.27-0ubuntu1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="web_jpa_hibernate"/>
+      <table id="2" parent="1" name="user"/>
+      <column id="3" parent="2" name="user_id">
+        <mandatory>1</mandatory>
+        <data-type>bigint(20)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="4" parent="2" name="age">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="5" parent="2" name="first_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="6" parent="2" name="last_name">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="7" parent="2" name="PRIMARY">
+        <columns>user_id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>
