@@ -13,12 +13,13 @@
     <title>All users info</title>
 </head>
 <body>
-<c:forEach items="${getAllUsers}" var="user">
+<h6>All users list:</h6>
+<c:forEach items="${getAllUser}" var="user1">
     <tr>
-        <td>${user.userId}</td>
-        <td>${user.firstname}</td>
-        <td>${user.lastname}</td>
-        <td>${user.age}</td>
+        <td>${user1.userId}</td> <br></br>
+        <td>${user1.firstName}</td> <br></br>
+        <td>${user1.lastName}</td> <br></br>
+        <td>${user1.age}</td> <br></br>
     </tr>
 </c:forEach>
 </body>

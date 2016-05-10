@@ -58,6 +58,7 @@ public class MainServlet extends ForwardServlet {
                 System.out.println("User id = " + user1.getUserId() + " user first name " + user1.getFirstName()
                         + " user last name " + user1.getLastName() + " user age " + user1.getAge());
             }
+            request.setAttribute("getAllUser", userDao.getAllUsers());
             super.forward("/user.info.jsp", request, response);
 
 
