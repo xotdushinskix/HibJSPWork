@@ -16,56 +16,126 @@ import java.util.List;
 /**
  * Created by nikita on 10.05.16.
  */
-@WebServlet("/user.info")
+
 public class MainServlet extends ForwardServlet {
+
+
+    private static String EDIT_JSP = "/insert.jsp";
+    private static String SHOW_ALL = "/showAll.jsp";
+    private Factory factory = Factory.getInstance();
+    private UserDao userDao = factory.getUserDao();
+    private User user = new User();
+
+
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        User user = new User();
+//        Factory factory = Factory.getInstance();
+//        UserDao userDao = factory.getUserDao();
+//
+//        HibernateUtil.getSessionFactory();
+//
+//        response.setContentType("text/html");
+//
+//
+////        if(request.getParameter("enter") !=null){         //add
+//            String fName = request.getParameter("firstname");
+//            String lName = request.getParameter("lastname");
+//            String age = request.getParameter("age");
+//
+//            user.setFirstName(fName);
+//            user.setLastName(lName);
+//            user.setAge(Integer.parseInt(age));
+//
+//            try {
+//                userDao.addUser(user);
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+////
+////
+////        } else if (request.getParameter("editUser") !=null) {        //edit
+////            Long editId = Long.valueOf(request.getParameter("idEdit"));
+////            try {
+////                userDao.editUser(userDao.getUser(editId));
+////            } catch (SQLException e1) {
+////                e1.printStackTrace();
+////            }
+////        }
+//
+//
+//
+//        //show all
+//        try {
+//            request.setAttribute("getAllUser", userDao.getAllUsers());
+//            super.forward("useinfojsp, request, response);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//  }
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String forwardString = null;
+        String action = request.getParameter("action");
+        if(action.equals("delete")) {
+            long userId = Long.parseLong(request.getParameter("userid"));
+            try {
+                userDao.deleteUser(userId);
+                request.setAttribute("users", userDao.getAllUsers());
+                forwardString = SHOW_ALL;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (action.equals("edit")) {
+            long userId = Long.parseLong(request.getParameter("userid"));
+            try {
+                user = userDao.getUser(userId);
+                request.setAttribute("user", user);
+                forwardString = EDIT_JSP;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (action.equals("showAll")) {
+            try {
+                request.setAttribute("users", userDao.getAllUsers());
+                forwardString = SHOW_ALL;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            forwardString = EDIT_JSP;
+        }
+        super.forward(forwardString, request, response);
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HibernateUtil.getSessionFactory();
-
-        response.setContentType("text/html");
-
-
         String fName = request.getParameter("firstname");
         String lName = request.getParameter("lastname");
         String age = request.getParameter("age");
-
-
-        Factory factory = Factory.getInstance();
-        UserDao userDao = factory.getUserDao();
-
-
-        User user = new User();
 
         user.setFirstName(fName);
         user.setLastName(lName);
         user.setAge(Integer.parseInt(age));
 
-        try {
-            userDao.addUser(user);
-            if (userDao == null) {
-                super.forward("/error.jsp", request, response);
+        String userId = request.getParameter("userIdInsertEdit");
+        if (userId == null) {
+            try {
+                userDao.addUser(user);
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            List<User> users = userDao.getAllUsers();
-            for(User user1 : users){
-                System.out.println("User id = " + user1.getUserId() + " user first name " + user1.getFirstName()
-                        + " user last name " + user1.getLastName() + " user age " + user1.getAge());
+        } else {
+            user.setUserId(Long.parseLong(userId));
+            try {
+                userDao.editUser(user);
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            request.setAttribute("getAllUser", userDao.getAllUsers());
-            super.forward("/user.info.jsp", request, response);
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-
-
+        super.forward(SHOW_ALL, request, response);
     }
 }

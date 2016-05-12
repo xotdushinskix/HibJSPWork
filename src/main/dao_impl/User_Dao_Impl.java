@@ -28,6 +28,9 @@ public class User_Dao_Impl implements UserDao {
         }
     }
 
+
+
+
     public List<User> getAllUsers() throws SQLException {
         List<User> users = null;
         Session session = null;
@@ -43,5 +46,60 @@ public class User_Dao_Impl implements UserDao {
             }
         }
         return users;
+    }
+
+
+
+
+    public void deleteUser(Long userId) throws SQLException {
+        Session session = null;
+        try{
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.delete(userId);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session == null) && (session.isOpen())) {
+                session.close();
+            }
+        }
+    }
+
+
+
+
+    public User getUser(Long userId) throws SQLException {
+        User result = null;
+        Session session = null;
+        try{
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            result = session.get(User.class, userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session == null) && (session.isOpen())) {
+                session.close();
+            }
+        }
+        return result;
+    }
+
+    public void editUser(User user) throws SQLException {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.update(user);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session == null) && (session.isOpen())) {
+                session.close();
+            }
+        }
     }
 }
