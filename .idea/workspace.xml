@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00037165-8488-4d7d-a230-90a3359fc135" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/servlet/DeleteServlet.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/servlet/EditServlet.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/util/Main.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/com.on_work_hiber_jsp.war" afterPath="$PROJECT_DIR$/target/com.on_work_hiber_jsp.war" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/showAll.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/showAll.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/webapp/showAll.jsp" afterPath="$PROJECT_DIR$/target/classes/webapp/showAll.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/com.on_work_hiber_jsp/WEB-INF/classes/webapp/showAll.jsp" afterPath="$PROJECT_DIR$/target/com.on_work_hiber_jsp/WEB-INF/classes/webapp/showAll.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/com.on_work_hiber_jsp/showAll.jsp" afterPath="$PROJECT_DIR$/target/com.on_work_hiber_jsp/showAll.jsp" />
     </list>
     <ignored path="HibJSPWork.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,8 +101,8 @@
       <file leaf-file-name="showAll.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/showAll.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+            <state relative-caret-position="-19">
+              <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -1044,12 +1050,12 @@
       <updated>1462863820744</updated>
       <workItem from="1462863823995" duration="2464000" />
       <workItem from="1462866296518" duration="71003000" />
-      <workItem from="1463134030816" duration="9717000" />
+      <workItem from="1463134030816" duration="10345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83184000" />
+    <option name="totallyTimeSpent" value="83812000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1345,9 +1351,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
           <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1399,14 +1403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/servlet/ForwardServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1439,10 +1435,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/showAll.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        <state relative-caret-position="-19">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
           <folding />
         </state>
       </provider>
