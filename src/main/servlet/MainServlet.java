@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * Created by nikita on 10.05.16.
  */
 
+@SuppressWarnings("ALL")
 public class MainServlet extends ForwardServlet {
 
 
@@ -27,69 +27,22 @@ public class MainServlet extends ForwardServlet {
     private User user = new User();
 
 
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        User user = new User();
-//        Factory factory = Factory.getInstance();
-//        UserDao userDao = factory.getUserDao();
-//
-//        HibernateUtil.getSessionFactory();
-//
-//        response.setContentType("text/html");
-//
-//
-////        if(request.getParameter("enter") !=null){         //add
-//            String fName = request.getParameter("firstname");
-//            String lName = request.getParameter("lastname");
-//            String age = request.getParameter("age");
-//
-//            user.setFirstName(fName);
-//            user.setLastName(lName);
-//            user.setAge(Integer.parseInt(age));
-//
-//            try {
-//                userDao.addUser(user);
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-////
-////
-////        } else if (request.getParameter("editUser") !=null) {        //edit
-////            Long editId = Long.valueOf(request.getParameter("idEdit"));
-////            try {
-////                userDao.editUser(userDao.getUser(editId));
-////            } catch (SQLException e1) {
-////                e1.printStackTrace();
-////            }
-////        }
-//
-//
-//
-//        //show all
-//        try {
-//            request.setAttribute("getAllUser", userDao.getAllUsers());
-//            super.forward("useinfojsp, request, response);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//  }
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HibernateUtil.getSessionFactory();
         String forwardString = null;
         String action = request.getParameter("action");
         if(action.equals("delete")) {
-            long userId = Long.parseLong(request.getParameter("userid"));
+            long userId = Long.parseLong(request.getParameter("userId"));
             try {
-                userDao.deleteUser(userId);
+                userDao.deleteUser(userDao.getUser(userId));
                 request.setAttribute("users", userDao.getAllUsers());
                 forwardString = SHOW_ALL;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else if (action.equals("edit")) {
-            long userId = Long.parseLong(request.getParameter("userid"));
+            long userId = Long.parseLong(request.getParameter("userId"));
             try {
                 user = userDao.getUser(userId);
                 request.setAttribute("user", user);
@@ -113,6 +66,7 @@ public class MainServlet extends ForwardServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HibernateUtil.getSessionFactory();
         String fName = request.getParameter("firstname");
         String lName = request.getParameter("lastname");
         String age = request.getParameter("age");
@@ -121,8 +75,8 @@ public class MainServlet extends ForwardServlet {
         user.setLastName(lName);
         user.setAge(Integer.parseInt(age));
 
-        String userId = request.getParameter("userIdInsertEdit");
-        if (userId == null) {
+        String userId = request.getParameter("userid");
+        if (userId.isEmpty()) {
             try {
                 userDao.addUser(user);
             } catch (SQLException e) {
@@ -135,6 +89,11 @@ public class MainServlet extends ForwardServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+        try {
+            request.setAttribute("users", userDao.getAllUsers());
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         super.forward(SHOW_ALL, request, response);
     }

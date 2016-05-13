@@ -51,12 +51,12 @@ public class User_Dao_Impl implements UserDao {
 
 
 
-    public void deleteUser(Long userId) throws SQLException {
+    public void deleteUser(User user) throws SQLException {
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.delete(userId);
+            session.delete(user);
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,6 +86,8 @@ public class User_Dao_Impl implements UserDao {
         }
         return result;
     }
+
+
 
     public void editUser(User user) throws SQLException {
         Session session = null;

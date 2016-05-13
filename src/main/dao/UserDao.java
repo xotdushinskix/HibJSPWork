@@ -12,7 +12,7 @@ public interface UserDao {
 
     public void addUser(User user) throws SQLException;
     public List<User> getAllUsers() throws SQLException;
-    public void deleteUser(Long userId) throws SQLException;
+    public void deleteUser(User user) throws SQLException;
     public User getUser(Long userId) throws SQLException;
     public void editUser(User user) throws SQLException;
 
