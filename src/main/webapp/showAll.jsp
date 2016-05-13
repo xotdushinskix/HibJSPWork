@@ -17,8 +17,19 @@
 
 
 <h3>All users list:</h3>
-<c:forEach items="${users}" var="user1">
-    <table border="1" cellpadding="7" cellspacing="0">
+<table border="2">
+    <thead>
+        <tr>
+            <th>User Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${users}" var="user1">
         <tr>
             <td>${user1.userId}</td>
             <td>${user1.firstName}</td>
@@ -27,8 +38,9 @@
             <td><a href="MainServlet?action=edit&userId=<c:out value="${user1.userId}"/>">Update</a></td>
             <td><a href="MainServlet?action=delete&userId=<c:out value="${user1.userId}"/>">Delete</a></td>
         </tr>
-    </table>
-</c:forEach>
+    </c:forEach>
+    </tbody>
+</table>
 <p><a href="MainServlet?action=insert">Add User</a></p>
 </body>
 </html>
